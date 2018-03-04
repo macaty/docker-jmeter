@@ -31,4 +31,4 @@ cat ${T_DIR}/Backend_Test.jtl
 echo "==== HTML Test Report ===="
 echo "See HTML test report in ${R_DIR}/index.html"
 aws s3 cp --recursive ${R_DIR} s3://${RESULT_BUCKET}/Backend_API_Test/${DATETIME}
-aws lambda invoke --invocation-type Event --function-name CodePipelineNotification --region ap-northeast-1 --log-type None --payload '${PAYLOAD}'
+aws lambda invoke --invocation-type Event --function-name CodePipelineNotification --region ap-northeast-1 --log-type None --payload '${PAYLOAD}' outputfile.txt
