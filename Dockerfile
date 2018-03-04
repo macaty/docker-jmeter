@@ -35,6 +35,8 @@ COPY entrypoint.sh /
 
 COPY runtest.sh ${JMETER_HOME}
 
+COPY build_payload.py ${JMETER_HOME}
+
 WORKDIR	${JMETER_HOME}
 
 ENTRYPOINT ["/entrypoint.sh"]

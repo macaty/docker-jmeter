@@ -8,7 +8,7 @@ RESULT_BUCKET=mpg-test-result
 DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
 TEST_FILE_URL=https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_Test.jmx
 RESULT_URL=https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_API_Test/${DATETIME}/index.html
-PAYLOAD="{\"CodePipeline.job\":{\"data\":{\"actionConfiguration\":{\"configuration\":{\"UserParameters\":\"See test report at ${RESULT_URL}\"}}}}}"
+PAYLOAD=`echo "See test report at ${RESULT_URL}" | python build_payload.py`
 
 # Reporting dir: start fresh
 R_DIR=${T_DIR}/report
