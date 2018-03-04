@@ -6,11 +6,14 @@
 T_DIR=${JMETER_HOME}/testfiles/MPG-Backend
 RESULT_BUCKET=mpg-test-result
 DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
+TEST_FILE_URL=https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_Test.jmx
 
 # Reporting dir: start fresh
 R_DIR=${T_DIR}/report
 rm -rf ${R_DIR} > /dev/null 2>&1
 mkdir -p ${R_DIR}
+mkdir -p ${T_DIR}
+curl -sSL -o ${T_DIR}/Backend_Test.jmx ${TEST_FILE_URL} > /dev/null 2>&1
 
 /bin/rm -f ${T_DIR}/Backend_Test.jtl ${T_DIR}/jmeter.log  > /dev/null 2>&1
 

@@ -32,8 +32,6 @@ ENV PATH $PATH:$JMETER_BIN
 
 COPY entrypoint.sh /
 
-COPY testfiles ${JMETER_HOME}/testfiles
-
 COPY runtest.sh ${JMETER_HOME}
 
 WORKDIR	${JMETER_HOME}
