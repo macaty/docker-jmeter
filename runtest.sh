@@ -28,4 +28,4 @@ cat ${T_DIR}/Backend_Test.jtl
 
 echo "==== HTML Test Report ===="
 echo "See HTML test report in ${R_DIR}/index.html"
-aws s3 cp ${R_DIR}/index.html s3://${RESULT_BUCKET}/Backend_API_Test${DATETIME}.html
+aws s3 cp --recursive ${R_DIR} s3://${RESULT_BUCKET}/Backend_API_Test/${DATETIME}
