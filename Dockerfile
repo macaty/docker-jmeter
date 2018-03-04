@@ -17,7 +17,8 @@ RUN    apk update \
 	&& apk upgrade \
 	&& apk add ca-certificates \
 	&& update-ca-certificates \
-	&& apk add --update openjdk8-jre tzdata curl unzip bash \
+	&& apk add --update openjdk8-jre tzdata curl unzip bash py2-pip python \
+        && pip install awscli \
 	&& rm -rf /var/cache/apk/* \
 	&& mkdir -p /tmp/dependencies  \
 	&& curl -L --silent ${JMETER_DOWNLOAD_URL} >  /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz  \
