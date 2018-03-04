@@ -4,6 +4,8 @@
 
 
 T_DIR=${JMETER_HOME}/testfiles/MPG-Backend
+RESULT_BUCKET=mpg-test-result
+DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
 
 # Reporting dir: start fresh
 R_DIR=${T_DIR}/report
@@ -23,3 +25,4 @@ cat ${T_DIR}/Backend_Test.jtl
 
 echo "==== HTML Test Report ===="
 echo "See HTML test report in ${R_DIR}/index.html"
+aws s3 cp ${R_DIR}/index.html s3://${RESULT_BUCKET}/Backend_API_Test${DATETIME}.html
