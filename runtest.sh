@@ -26,6 +26,7 @@ jmeter  -n -t ${T_DIR}/Backend_Test.jmx -l ${T_DIR}/Backend_Test.jtl -j ${T_DIR}
 
 if [ $TESTMODE = 'pagespeed' ]; then
   PAYLOAD=`python transform_csv_result.py result.csv | python build_payload.py`
+fi
 
 echo "==== jmeter.log ===="
 cat ${T_DIR}/jmeter.log
