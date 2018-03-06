@@ -5,10 +5,10 @@
 
 T_DIR=${JMETER_HOME}/testfiles/MPG-Backend
 RESULT_BUCKET=${RESULT_BUCKET:-mpg-test-result}
-RESULT_PATH_PREFIX=${RESULT_PATH:-/Backend_API_Test}
+RESULT_PATH_PREFIX=${RESULT_PATH_PREFIX:-/Backend_API_Test}
 DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
 TEST_FILE_URL=${TEST_FILE_URL:-https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_Test.jmx}
-RESULT_URL=${RESULT_URL:-https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/${RESULT_BUCKET}/${DATETIME}/index.html}
+RESULT_URL=${RESULT_URL:-https://s3-ap-northeast-1.amazonaws.com/${RESULT_BUCKET}${RESULT_PATH_PREFIX}/${DATETIME}/index.html}
 PAYLOAD=`echo "See test report at ${RESULT_URL}" | python build_payload.py`
 
 # Reporting dir: start fresh
