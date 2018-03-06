@@ -4,10 +4,11 @@
 
 
 T_DIR=${JMETER_HOME}/testfiles/MPG-Backend
-RESULT_BUCKET=mpg-test-result
+RESULT_BUCKET=${RESULT_BUCKET:-mpg-test-result}
+RESULT_PATH_PREFIX=${RESULT_PATH:-/Backend_API_Test}
 DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
-TEST_FILE_URL=https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_Test.jmx
-RESULT_URL=https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_API_Test/${DATETIME}/index.html
+TEST_FILE_URL=${TEST_FILE_URL:-https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/Backend_Test.jmx}
+RESULT_URL=${RESULT_URL:-https://s3-ap-northeast-1.amazonaws.com/mpg-test-result/${RESULT_BUCKET}/${DATETIME}/index.html}
 PAYLOAD=`echo "See test report at ${RESULT_URL}" | python build_payload.py`
 
 # Reporting dir: start fresh
@@ -30,5 +31,5 @@ cat ${T_DIR}/Backend_Test.jtl
 
 echo "==== HTML Test Report ===="
 echo "See HTML test report in ${R_DIR}/index.html"
-aws s3 cp --recursive ${R_DIR} s3://${RESULT_BUCKET}/Backend_API_Test/${DATETIME}
+aws s3 cp --recursive ${R_DIR} s3://${RESULT_BUCKET}${RESULT_PATH_PREFIX}/${DATETIME}
 aws lambda invoke --invocation-type Event --function-name CodePipelineNotification --region ap-northeast-1 --log-type None --payload "${PAYLOAD}" outputfile.txt
