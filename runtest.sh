@@ -2,6 +2,7 @@
 #
 # Test the JMeter Docker image using a trivial test plan.
 
+REGION=${REGION:-Tokyo}
 TESTMODE=${TESTMODE:-api}
 T_DIR=${JMETER_HOME}/testfiles/MPG-Backend
 RESULT_BUCKET=${RESULT_BUCKET:-mpg-test-result}
@@ -25,7 +26,8 @@ jmeter  -n -t ${T_DIR}/Backend_Test.jmx -l ${T_DIR}/Backend_Test.jtl -j ${T_DIR}
 	-e -o ${R_DIR}
 
 if [ $TESTMODE = 'pagespeed' ]; then
-  PAYLOAD=`python transform_csv_result.py result.csv | python build_payload.py`
+  PAYLOAD=`python transform_csv_result.py result.csv`
+  PAYLOAD=`echo "From $REGION, $PAYLOAD" | python build_payload.py`
 fi
 
 echo "==== jmeter.log ===="
